@@ -1,0 +1,63 @@
+body, 
+html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    /* Thiết lập phông chữ chung cho toàn bộ trang */
+}
+
+body {
+    background-image: url('../icon/bglogin2.jpg');
+    background-size: cover;
+    /* Hiển thị hình ảnh mà không bị căn chỉnh hoặc bị giãn ra quá mức */
+    background-position: center;
+}
+
+.login-container {
+    /* Thêm các thuộc tính CSS cần thiết cho phần tử login-container */
+    width: 350px;
+    /* Độ rộng của phần tử */
+    padding: 20px;
+    /* Khoảng cách lề bên trong */
+    border: 1px solid #ffffff;
+    /* Viền */
+    border-radius: 30px;
+    /* Bo tròn viền */
+    background-color: #dcebff;
+    /* Màu nền */
+}
+
+h3 {
+    text-align: center;
+}
+
+.btn-primary {
+    display: block;
+    /* Hiển thị nút dưới dạng block */
+    width: 100%;
+    /* Đặt chiều rộng cho nút là 100% */
+
+
+}
+.btn-success {
+    display: block;
+    /* Hiển thị nút dưới dạng block */
+    width: 100%;
+    /* Đặt chiều rộng cho nút là 100% */
+}
+main{
+    margin: 40px;
+}
+main>h3{
+    margin-bottom: 20px;
+}
+main>img{
+    max-height: 100px;
+    max-width: 100px;
+    margin-left: 60px;
+    margin-bottom: 30px;
+
+}

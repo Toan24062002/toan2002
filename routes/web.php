@@ -1,0 +1,60 @@
+<?php
+
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\SlideImageController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PhakyController;
+use App\Http\Controllers\IntroController;
+use App\Http\Controllers\PhotosController;
+use App\Http\Controllers\NewsController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CheckLogin;
+use App\Http\Middleware\CheckXemTin;
+use App\Http\Middleware\CheckPhaKy;
+
+ 
+// Route::get('/', function () {
+//     return view('index');
+// });
+//Route::get('Admin', [AccountController::class, 'index'])->name('account.index');
+Route::get('Admin', [AccountController::class, 'index'])->name('account.index')->middleware(CheckLogin::class);
+Route::post('Login', [HomeController::class, 'kiemtradangnhap'])->name('home.kiemtradangnhap');
+Route::get('/Logout', [HomeController::class, 'logout'])->name('home.logout');
+Route::get('Admin/Login', [AccountController::class, 'login'])->name('account.login');
+Route::get('Admin/Them-taikhoan', [AccountController::class, 'addacc'])->name('account.add');
+Route::post('Admin/Them-taikhoan', [AccountController::class, 'store'])->name('account.store');
+Route::get('Admin//{id}/Edit', [AccountController::class, 'edit'])->name('account.edit');
+Route::post('Admin//{id}/Editt', [AccountController::class, 'update'])->name('account.update');
+Route::get('Admin//{id}/Delete', [AccountController::class, 'delete'])->name('account.delete');
+Route::get('Admin/Slide', [SlideImageController::class, 'index'])->name('slide.index'); 
+Route::get('Admin/AddSlide', [SlideImageController::class, 'create'])->name('slide.create');
+Route::post('Admin/Themanh', [SlideImageController::class, 'store'])->name('slide.store');
+Route::get('Admin/Slide/{id}/Delete', [SlideImageController::class, 'delete'])->name('slide.delete');
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('Admin/intro', [IntroController::class, 'edit'])->name('Intro.intro');
+Route::post('Admin/capnhat', [IntroController::class, 'update'])->name('Intro.update');
+Route::get('Admin/QLPhaky', [PhakyController::class, 'index'])->name('Phaky.index');
+Route::get('Admin/phaky/{id}/addvo', [PhakyController::class, 'addVo'])->name('Phaky.addvo');
+Route::get('Admin/phaky/{id}/edit', [PhakyController::class, 'edit'])->name('Phaky.edit');
+Route::post('Admin//{id}/Edit', [PhakyController::class, 'update'])->name('Phaky.update');
+Route::post('Admin/Themhonnhan', [PhakyController::class, 'store'])->name('Phaky.store');
+Route::get('Admin/phaky/{id}/addcon', [PhakyController::class, 'addcon'])->name('Phaky.addcon');
+Route::post('Admin/Themcon', [PhakyController::class, 'storecon'])->name('Phaky.storecon'); 
+Route::get('Admin/Phaky/{id}/Delete', [PhakyController::class, 'delete'])->name('Phaky.delete');
+Route::get('Phaky', [HomeController::class, 'showpk'])->name('home.phaky')->middleware(CheckPhaKy::class);
+Route::post('Login_user', [HomeController::class, 'kiemtrauser'])->name('home.kiemtrauser');
+Route::get('Login-user', [AccountController::class, 'login_user'])->name('account.login_user');
+Route::get('QLNews', [NewsController::class, 'index'])->name('News.index');
+Route::get('Admin/AddNews', [NewsController::class, 'add'])->name('News.create');
+Route::post('Admin/AddNews',[ NewsController::class, 'store'])->name('News.store');
+Route::get('Admin/news/{id}/edit', [NewsController::class, 'edit'])->name('News.edit');
+Route::post('Admin//{id}/Edit', [NewsController::class, 'update'])->name('News.update');
+Route::get('News', [HomeController::class, 'news'])->name('Home.news')->middleware(CheckPhaKy::class);
+Route::get('//{id}/Chitiettintuc', [NewsController::class, 'chitiettin'])->name('News.chitiettin');
+Route::get('Admin/News/{id}/Delete', [NewsController::class, 'delete'])->name('News.delete');
+Route::get('Admin/Photos', [PhotosController::class, 'index'])->name('photos.index');
+Route::get('Admin/AddPhotos', [PhotosController::class, 'create'])->name('photos.create');
+Route::post('Admin/AddPhotos',[ PhotosController::class, 'store'])->name('photos.store');
+Route::get('Admin/Photo/{id}/Delete', [PhotosController::class, 'delete'])->name('photos.delete');
+Route::get('Thuvien', [HomeController::class, 'Photos'])->name('Home.thuvien')->middleware(CheckPhaKy::class);
+Route::get('Phutho', [HomeController::class, 'Phutho'])->name('Home.phutho');
